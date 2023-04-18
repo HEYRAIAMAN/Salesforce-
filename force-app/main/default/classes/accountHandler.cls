@@ -4,8 +4,6 @@ public with sharing class accountHandler {
         list<Account> accList = [select Id, Name from Account];
         System.debug('Accounts : '+accList);
         return accList;
-
-
     }
     @auraEnabled
      public static list<Contact> contactRelated(String value){

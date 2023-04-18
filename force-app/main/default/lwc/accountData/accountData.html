@@ -1,0 +1,43 @@
+<template>
+    
+    <lightning-card title="Account Handler">
+        <lightning-combobox label="Account Name"
+                            value={value}
+                            placeholder="Select Account"
+                            options={options}
+                            onchange={handleOnChange} style="padding: 1%">
+        </lightning-combobox>
+    </lightning-card>
+
+    <template if:true={cardVisible}>
+        <div class="spinner">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" variant="brand" size="large">
+                </lightning-spinner>
+            </template> 
+        </div>
+        <lightning-card title="Related Contact">
+            <div style="height: 200px;">
+                <lightning-datatable
+                        hide-checkbox-column
+                        show-row-number-column
+                        key-field="id"
+                        data={displayUpdateData}
+                        columns={columns}   
+                        onrowaction={handleRowAction}
+                        class="datatable">
+                </lightning-datatable>
+            </div >
+            <div class="slds-align_absolute-center">
+                <div style="padding-right: 40px;">
+                <lightning-button label="Previous" onclick={handlePrevious} disabled={disablePrevious}></lightning-button>
+            </div>
+            <!-- </div>
+            <div class="slds-button" > -->
+            <div >
+                <lightning-button label="Next" onclick={handleNext} disabled={disableNext}></lightning-button>
+            </div>
+        </div>
+        </lightning-card>
+    </template>
+</template>

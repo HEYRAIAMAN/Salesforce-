@@ -1,0 +1,32 @@
+<template>
+   
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+        <thead>
+            <tr>
+                <th>S.NO.</th>
+                <th>Documents Name</th>
+                <th>File Upload</th>
+            </tr>
+        </thead>
+        <tbody>
+            <template for:each={data} for:item="item" for:index="index">
+                <tr key={item.Id}>
+                    <td>
+                        <lightning-formatted-number value={index}></lightning-formatted-number>
+                    </td>
+                    <td>{item.Name}</td>
+                    <td>
+                        <lightning-file-upload label="Upload"
+                                               accept={acceptedFormats}
+                                               record-id={item.Id}
+                                               onuploadfinished={handleUploadFinished}>
+                        </lightning-file-upload>
+                    </td>
+                </tr>
+            </template>
+        </tbody>
+    </table>
+    
+</template>
+
+

@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-box slds-theme_default">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead>
+                <tr>
+                    <th>S.NO.</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={contList} for:item="rec" for:index="indexNum">
+                    <tr key={rec.indexNum} class="slds-hint-parent">
+
+                        <td>{rec.serialNumber}</td>
+                        <td><lightning-input name="LastName" onchange={change} access-key="indexNum" value={rec.LastName}></lightning-input></td>
+                        <td><lightning-input name="Email" onchange={change} access-key="indexNum" value={rec.Email}></lightning-input></td>
+                        <td><lightning-input name="Phone" onchange={change} access-key="indexNum" value={rec.Phone}></lightning-input></td>
+                        <td>
+                            <lightning-button-icon
+                                icon-name="utility:add"
+                                size="small"
+                                title="Add"
+                                onclick={handleAdd}
+                                
+                            ></lightning-button-icon>
+                            <lightning-button-icon
+                                icon-name="utility:delete"
+                                size="small"
+                                title="Delete"
+                                data-index={indexNum}
+                                onclick={handleDelete}
+                                disabled={disAbled}
+                            ></lightning-button-icon>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        <div class="slds-m-top_medium">
+            <lightning-button-group>
+                <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+                <lightning-button label="Clear" variant="neutral" onclick={handleClear}></lightning-button>
+            </lightning-button-group>
+        </div>
+    </div>
+</template>
